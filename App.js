@@ -93,7 +93,7 @@ export default class App extends React.Component {
 
           <Row>
             <Button
-              text="0"
+              text="zero"
               size="double"
               onPress={() => this.handleTap("number", 0)}
             />
