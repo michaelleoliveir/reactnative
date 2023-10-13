@@ -19,7 +19,7 @@ export default function App() {
       },
 
       results: {
-        backgroundColor: darkMode ? '#282f3b' : '#E9E8E8',
+        backgroundColor: darkMode ? '#1B1F26' : '#E9E8E8',
         width: '100%',
         minHeight: 300,
         alignItems: 'flex-end',
@@ -47,7 +47,7 @@ export default function App() {
       buttons: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        backgroundColor: darkMode ? '#282f3b' :'#E9E8E8'
+        backgroundColor: darkMode ? '#1B1F26' :'#E9E8E8'
       },
 
       button: {
@@ -63,11 +63,11 @@ export default function App() {
       },
 
       textButton: {
-        color: darkMode ? '#D2D3D4' : '#444343',
+        color: darkMode ? '#F7F7F7' : '#444343',
         fontSize: 25,
         fontWeight: "500",
         fontFamily: '',
-      }
+      },
     }
   )
 
@@ -92,7 +92,7 @@ export default function App() {
           <TouchableOpacity 
             key={button} 
             style={[styles.button, 
-              {backgroundColor: '#FFAB5C'}]}>
+              {backgroundColor: '#EF9B4D'}]}>
             <Text style={[styles.textButton]}>{button}</Text>
           </TouchableOpacity>
 
@@ -100,7 +100,7 @@ export default function App() {
           <TouchableOpacity 
             key={button} 
             style={[styles.button, 
-              {backgroundColor: typeof(button) === 'number' ? darkMode === true ? '#303946' : '#fff' : darkMode == true ? '#414853' : '#C6C5C5'}]}>
+              {backgroundColor: typeof(button) === 'number' ? darkMode === true ? '#303946' : '#fff' : darkMode == true ? '#4E545E' : '#C6C5C5'}]}>
             <Text style={styles.textButton}>{button}</Text>
           </TouchableOpacity>
         )}
