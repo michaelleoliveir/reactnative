@@ -4,11 +4,64 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { Entypo } from '@expo/vector-icons';
 
+
 export default function App() {
+  const [darkMode, setDarkMode] = useState(false)
+  const buttons = ['AC', 'DEL', '%', '/', 7, 8, 9, '*', 4, 5, 6, '-', 3, 2, 1, '+', 0, '.', '+/-', '=']  
 
-  const[darkMode, setDarkMode] = useState(false)
-  const buttons = ['C', 'DEL', '%', '/', 7, 8, 9, '*', 4, 5, 6, '-', 3, 2, 1, '+', '.', 0, '+/-', '=']
+  const [currentNumber, setCurrentNumber] = useState("")
+  const [lastNumber, setLastNumber] = useState("")
 
+
+  function calculator(){
+    const splitNumbers = currentNumber.split(' ')
+    const firstNumber = parseFloat(splitNumbers[0])
+    const lastNumber = parseFloat(splitNumbers[2])
+    const operator = splitNumbers[1]
+
+    switch(operator){
+      case '+':
+        setCurrentNumber((firstNumber + lastNumber).toString())
+        return
+      case '-': 
+        setCurrentNumber((firstNumber - lastNumber).toString())
+        return
+      case '*':
+        setCurrentNumber((firstNumber * lastNumber).toString())
+        return
+      case '/': 
+        setCurrentNumber((firstNumber / lastNumber).toString())
+        return
+      case '%': // o caso para cálculo da porcentagem
+        setCurrentNumber((firstNumber * 0.01).toString());
+        return
+    }
+  }
+
+  function handleInput(buttonPressed){
+    console.log(buttonPressed)
+    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "*" | buttonPressed === "/" | buttonPressed === "%" ){
+      setCurrentNumber(currentNumber + " " + buttonPressed + " ")
+      return
+    }
+    switch(buttonPressed){
+      case 'DEL':
+        setCurrentNumber(currentNumber.substring(0, (currentNumber.length -1)))
+        return
+      case 'AC':
+        setLastNumber("")
+        setCurrentNumber("")
+        return
+      case '=':
+        setLastNumber(currentNumber + " = ")
+        calculator()
+        return
+      case '+/-':
+        return
+    }
+
+    setCurrentNumber(currentNumber + buttonPressed)
+  }
   const styles = StyleSheet.create(
     {
       container: {
@@ -32,9 +85,17 @@ export default function App() {
         fontSize: 38
       },
 
+      historyText:{
+        color: darkMode ? "#B5B7BB" : "#7c7c7c",
+        fontSize: 20,
+        marginRight: 10,
+        alignSelf: 'flex-end',
+      },
+
       themeButtom: {
+        position: 'absolute',
         alignSelf: 'flex-start',
-        bottom: 120,
+        bottom: 200,
         margin: 15,
         backgroundColor: darkMode ? '#7b8084' : '#FFFFFF',
         alignItems: 'center',
@@ -71,7 +132,7 @@ export default function App() {
     }
   )
 
-  return(
+   return(
     <View>
       <View style={styles.results}>
         <TouchableOpacity style={styles.themeButtom}>
@@ -82,22 +143,22 @@ export default function App() {
             onPress={() => darkMode ? setDarkMode(false) : setDarkMode(true)} 
           />
         </TouchableOpacity>
-        <Text style={styles.resultsText}>2 + 2 = 5</Text>
+        <Text style={styles.historyText}>{lastNumber}</Text>
+        <Text style={styles.resultsText}>{currentNumber}</Text>
       </View>
 
       <View style={styles.buttons}>
         {buttons.map((button) => 
           button === '=' 
           ? 
-          <TouchableOpacity 
+          <TouchableOpacity onPress={() => handleInput(button)}
             key={button} 
             style={[styles.button, 
               {backgroundColor: '#EF9B4D'}]}>
             <Text style={[styles.textButton]}>{button}</Text>
           </TouchableOpacity>
-
           : 
-          <TouchableOpacity 
+          <TouchableOpacity onPress={() => handleInput(button)}
             key={button} 
             style={[styles.button, 
               {backgroundColor: typeof(button) === 'number' ? darkMode === true ? '#303946' : '#fff' : darkMode == true ? '#4E545E' : '#C6C5C5'}]}>
