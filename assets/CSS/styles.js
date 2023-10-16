@@ -1,6 +1,6 @@
-import React from "react"
+import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create(
+export const getStyles = (darkMode) => StyleSheet.create(
     {
       container: {
         flex: 1,
@@ -68,5 +68,4 @@ const styles = StyleSheet.create(
         fontFamily: '',
       },
     }
-  )
-export default styles;
+  );
