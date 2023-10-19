@@ -13,13 +13,12 @@ export default function App() {
   const [currentNumber, setCurrentNumber] = useState("")
   const [lastNumber, setLastNumber] = useState("")
 
-
   function calculator(){
     const splitNumbers = currentNumber.split(' ')
     const firstNumber = parseFloat(splitNumbers[0])
     const lastNumber = parseFloat(splitNumbers[2])
     const operator = splitNumbers[1]
-
+  
     switch(operator){
       case '+':
         setCurrentNumber((firstNumber + lastNumber).toString())
@@ -38,7 +37,7 @@ export default function App() {
         return
     }
   }
-
+  
   function handleInput(buttonPressed){
     console.log(buttonPressed)
     if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "*" | buttonPressed === "/" | buttonPressed === "%" ){
@@ -60,7 +59,7 @@ export default function App() {
       case '+/-':
         return
     }
-
+  
     setCurrentNumber(currentNumber + buttonPressed)
   }
 
