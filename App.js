@@ -33,7 +33,7 @@ export default function App() {
         setCurrentNumber((firstNumber / lastNumber).toString())
         return
       case '%': // o caso para cálculo da porcentagem
-        setCurrentNumber((firstNumber * 0.01).toString());
+        setCurrentNumber(((firstNumber * lastNumber) / 100).toString());
         return
     }
   }
@@ -57,7 +57,10 @@ export default function App() {
         calculator()
         return
       case '+/-':
-        return
+        setCurrentNumber(
+          currentNumber.startsWith('-') ? (currentNumber * (-1)) : "-" + currentNumber
+        );
+        return;
     }
   
     setCurrentNumber(currentNumber + buttonPressed)
