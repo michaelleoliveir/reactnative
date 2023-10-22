@@ -58,7 +58,7 @@ export default function App() {
         return
       case '+/-':
         setCurrentNumber(
-          currentNumber.startsWith('-') ? (currentNumber * (-1)) : "-" + currentNumber
+          currentNumber.startsWith('-') ? currentNumber.slice(1) : "-" + currentNumber
         );
         return;
     }
